@@ -14,13 +14,19 @@ def word_freq(word):
     # return reduce(lambda a, b: a + b, [1 for x in get_book() if x == word]) if word in get_book() else 0
 
 def group_freq(word_list):
-    book = get_book()
-    return len([x for x in book if x in word_list])
-    # return reduce(lambda a, b: a + b, [1 for x in get_book() if x in word_list])
+    return reduce(lambda a, b : a + b, [word_freq(wrd) for wrd in word_list])
 
 def most_freq():
     book = get_book()
-    return reduce(lambda a, b : a if word_freq(a) > word_freq(b) else b, [x for x in book])
+    d = {wrd : 0 for wrd in book}
+    freqs = [[wrd, word_freq(wrd)] for wrd in d]
+    # print freqs
+    return reduce(lambda a, b : a if a[1] > b[1] else b, freqs)
+    # print d
+    # d = {wrd : lambda wrd : d[wrd] + 1 for wrd in book}
+    # print d
+    # top_freq = max(d.values())
+    # return [wrd for wrd, freq in d.items() if freq == top_freq]
 
 
 
